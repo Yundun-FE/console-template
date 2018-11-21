@@ -1,4 +1,4 @@
-import request from '../service/request'
+import request from '../utils/request'
 
 export default {
   domainidSettingCdnAdvancecache(domain_id, data) {
@@ -45,7 +45,7 @@ export default {
     }
 
     // 是否打开旧入口
-    const oldEnter = cfw_migrate === '2' ? false : true
+    const oldEnter = cfw_migrate !== '2'
     Object.assign(data, {
       oldEnter,
       mType

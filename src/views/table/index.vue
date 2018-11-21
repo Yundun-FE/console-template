@@ -1,38 +1,16 @@
 <template>
   <div class="app-container">
-    <el-table v-loading="listLoading" :data="list" element-loading-text="Loading" border fit highlight-current-row>
-      <el-table-column align="center" label="ID" width="95">
-        <template slot-scope="scope">
-          {{ scope.$index }}
-        </template>
-      </el-table-column>
-      <el-table-column label="Title">
-        <template slot-scope="scope">
-          {{ scope.row.title }}
-        </template>
-      </el-table-column>
-      <el-table-column label="Author" width="110" align="center">
-        <template slot-scope="scope">
-          <span>{{ scope.row.author }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="Pageviews" width="110" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.pageviews }}
-        </template>
-      </el-table-column>
-      <el-table-column class-name="status-col" label="Status" width="110" align="center">
-        <template slot-scope="scope">
-          <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" prop="created_at" label="Display_time" width="200">
-        <template slot-scope="scope">
-          <i class="el-icon-time" />
-          <span>{{ scope.row.display_time }}</span>
-        </template>
-      </el-table-column>
+    <el-button size="small" type="primary">添加域名</el-button>
+    <el-button size="small" @click="init">刷新列表</el-button>
+    <el-table v-loading="listLoading" :data="list" size="medium">
+      <el-table-column label="域名" prop="domain" />
+      <el-table-column label="状态" prop="" />
+      <el-table-column label="协议" prop="" />
+      <el-table-column label="使用场景" prop="" />
+      <el-table-column label="创建时间" prop="" />
+      <el-table-column label="操作" prop="" />
     </el-table>
+    <el-pagination :total="total" background layout="prev, pager, next"/>
   </div>
 </template>
 
@@ -54,19 +32,21 @@ export default {
   data() {
     return {
       list: null,
+      total: 0,
       listLoading: true
     }
   },
   created() {
-    this.fetchData()
+    this.init()
   },
   methods: {
-    fetchData() {
+    async init() {
       this.listLoading = true
-      getList(this.listQuery).then(response => {
-        this.list = response.data.items
-        this.listLoading = false
-      })
+      const { list, total } = await Domain.webDomainList()
+      this.list = list
+      this.total = parseInt(total)
+      this.listLoading = false
+      console.log(list)
     }
   }
 }
