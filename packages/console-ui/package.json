@@ -1,5 +1,5 @@
 {
-  "name": "@yundun/console-ui",
+  "name": "yundun-console-ui",
   "version": "0.0.2",
   "description": "console-ui",
   "main": "src/index.js",
@@ -7,5 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "gitHead": "7586ab39f154dd57908744c4354d30a2a78a6f7c"
 }
