@@ -12,5 +12,8 @@
   },
   "author": "xank@qq.com",
   "license": "ISC",
-  "gitHead": "f2751667e8e773604f81f0ea70e3b0660a3016bc"
+  "gitHead": "f2751667e8e773604f81f0ea70e3b0660a3016bc",
+  "dependencies": {
+    "yundun-common": "^0.0.2"
+  }
 }

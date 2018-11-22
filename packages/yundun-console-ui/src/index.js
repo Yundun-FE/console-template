@@ -1,11 +1,13 @@
 import DmData from '../packages/DmData'
 import Column from '../packages/Column'
 import Item from '../packages/Item'
+import Form from '../packages/Form'
 
 const components = [
   DmData,
   Column,
-  Item
+  Item,
+  Form
 ]
 
 const install = function(Vue) {
@@ -19,5 +21,6 @@ export default {
   install,
   DmData,
   Column,
-  Item
+  Item,
+  Form
 }
