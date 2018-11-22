@@ -1,6 +1,6 @@
 {
   "name": "yundun-console-ui",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "console-ui",
   "main": "src/index.js",
   "scripts": {
@@ -11,5 +11,6 @@
     "url": "git+https://github.com/yundun/console-template"
   },
   "author": "xank@qq.com",
-  "license": "ISC"
+  "license": "ISC",
+  "gitHead": "f2751667e8e773604f81f0ea70e3b0660a3016bc"
 }
