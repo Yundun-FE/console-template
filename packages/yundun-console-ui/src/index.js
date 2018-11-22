@@ -1,23 +1,23 @@
-import DmData from '../packages/DmData/index.js'
+import DmData from '../packages/DmData'
+import Column from '../packages/Column'
+import Item from '../packages/Item'
 
 const components = [
-  DmData
+  DmData,
+  Column,
+  Item
 ]
 
-const install = function(Vue, opts = {}) {
+const install = function(Vue) {
   components.forEach(component => {
     Vue.component(component.name, component)
   })
 }
 
-/* istanbul ignore if */
-if (typeof window !== 'undefined' && window.Vue) {
-  install(window.Vue)
-}
-
-module.exports = {
+export default {
   version: '0.0.1',
-  DmData
+  install,
+  DmData,
+  Column,
+  Item
 }
-
-module.exports.default = module.exports

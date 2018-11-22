@@ -1,16 +1,13 @@
 <style lang="postcss">
-.dm-data {
-  &-header {
-    margin-bottom: 12px;
+.DmData {
+  &__header {
+    margin-bottom: 16px;
     overflow: hidden;
     .pull-right {
       float: right;
     }
-    .input--search {
-      width: 300px;
-    }
   }
-  &-pagination {
+  &__pagination {
     &__desc {
       line-height: 45px;
       font-size: 13px;
@@ -21,29 +18,32 @@
 }
 </style>
 <template>
-  <div class="dm-data">
-    <div class="dm-data-tips">
+  <div :class="b()">
+    <div :class="b('tips')">
       <slot name="tips" />
     </div>
-    <div v-if="$slots.header || header" class="dm-data-header">
+    <div v-if="$slots.header || header" :class="b('header')">
       <slot name="header" />
     </div>
-    <div class="dm-data-table">
+    <div :class="b('core')">
       <slot />
     </div>
-    <div class="dm-data-pagination">
-      <div class="pull-left dm-data-pagination__desc">
+    <div :class="b('pagination')">
+      <div :class="b('paginationDesc')" class="pull-left">
         <slot name="pagination-desc" />
       </div>
-      <yd-pagination :page-size="pagination.per_page" :current-page="pagination.page" :total="pagination.total" @current-change="handleCurrentChange" @size-change="handleSizeChange" />
+      <el-pagination :page-size="pagination.per_page" :current-page="pagination.page" :total="pagination.total" background layout="prev, pager, next" @current-change="handleCurrentChange" @size-change="handleSizeChange" />
     </div>
   </div>
 </template>
 
 <script>
-import { deepClone } from 'common/utils'
+import { deepClone } from '../../src/utils'
+import create from '../../src/utils/create-basic'
 
-export default {
+export default create({
+  name: 'DmData',
+
   props: {
     header: {},
     params: Object,
@@ -113,5 +113,5 @@ export default {
     }
 
   }
-}
+})
 </script>

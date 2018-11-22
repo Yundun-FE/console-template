@@ -1,16 +1,23 @@
 <template>
   <div class="app-container">
-    <el-button size="small" type="primary">添加域名</el-button>
-    <el-button size="small" @click="init">刷新列表</el-button>
-    <el-table v-loading="listLoading" :data="list" size="medium">
-      <el-table-column label="域名" prop="domain" />
-      <el-table-column label="状态" prop="" />
-      <el-table-column label="协议" prop="" />
-      <el-table-column label="使用场景" prop="" />
-      <el-table-column label="创建时间" prop="" />
-      <el-table-column label="操作" prop="" />
-    </el-table>
-    <el-pagination :total="total" background layout="prev, pager, next"/>
+    <DmData ref="dmData">
+      <div slot="header">
+        <el-button size="small" type="primary">添加域名</el-button>
+        <el-button size="small" @click="init">刷新列表</el-button>
+      </div>
+      <el-table v-loading="listLoading" :data="list" size="medium">
+        <el-table-column label="域名" prop="domain" />
+        <el-table-column label="状态" prop="" />
+        <el-table-column label="协议" prop="" />
+        <el-table-column label="使用场景" prop="" />
+        <el-table-column label="创建时间" prop="" />
+        <el-table-column label="操作" width="200" prop="" >
+          <template slot-scope="scope">
+            <el-button size="small">进入配置</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </DmData>
   </div>
 </template>
 
@@ -19,16 +26,6 @@ import { getList } from '@/api/table'
 import Domain from '@/api/domain'
 
 export default {
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        published: 'success',
-        draft: 'gray',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    }
-  },
   data() {
     return {
       list: null,
@@ -44,7 +41,9 @@ export default {
       this.listLoading = true
       const { list, total } = await Domain.webDomainList()
       this.list = list
-      this.total = parseInt(total)
+      this.$refs.dmData.init({
+        total: parseInt(total)
+      })
       this.listLoading = false
       console.log(list)
     }
