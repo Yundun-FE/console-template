@@ -5,6 +5,8 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/zh-CN' // lang i18n
 import ConsoleUI from 'yundun-console-ui'
+import VeeValidate from 'vee-validate'
+import VeeElement from 'vee-element'
 
 import '@/styles/index.scss' // global css
 
