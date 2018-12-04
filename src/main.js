@@ -17,8 +17,12 @@ import store from './store'
 import '@/icons' // icon
 import '@/permission' // permission control
 
+import Antd from 'ant-design-vue'
+import 'ant-design-vue/dist/antd.css'
+
 Vue.use(ConsoleUI)
 Vue.use(ElementUI, { locale })
+Vue.use(Antd)
 
 Vue.config.productionTip = false
 
